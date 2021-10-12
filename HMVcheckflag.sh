@@ -1,5 +1,5 @@
 #################################################
-# experiment in bash for submit from bash of flags in HackMyVM
+# experiment in bash for submit flag from bash in HackMyVM
 # creator : b4el7d
 ##################################################
 
