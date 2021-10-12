@@ -3,12 +3,20 @@
 # creator : b4el7d
 ##################################################
 
+url="https://hackmyvm.eu"
+path1="/machines/checkflag.php"
+urlFullCheck=$url""$path1
+userAgent="Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101 Firefox/78.0"
+accept="text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8"
+language="en-US,en;q=0.5"
 
 if [ $# -ne 3 ];
   then
     echo -e "exec:\nbash ./HMVcheckflag.sh Machinename Flag PHPSESSIONID"
     exit
 fi
+
+
 
 echo " _       _ _  __ __  _ _       _       "
 echo "| | ___ | | ||  \  \| | | ___ | |      "
@@ -26,18 +34,14 @@ echo '|_/|___|| _> | |_ | <_/\|___||_/       '
 echo '<_>     |_|  |___|`____/     <_>       '
                                   
 
-
+echo "############################"
 echo "[*]CHECKING[*]"
 echo "Machine: $1"
 echo "Flag try: $2"
 echo "ID: $3"
+echo "############################"
 
-url="https://hackmyvm.eu"
-path1="/machines/checkflag.php"
-urlFullCheck=$url""$path1
-userAgent="Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101 Firefox/78.0"
-accept="text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8"
-language="en-US,en;q=0.5"
+
 
 
 returnReq=$(bash -c "curl -s '$urlFullCheck' -H 'User-Agent: $useragent' -H 'Accept: $accept' -H 'Accept-Language: $language' --compressed -H 'Referer: https://hackmyvm.eu/machines/machine.php?vm=$1' -H 'Content-Type: application/x-www-form-urlencoded' -H 'Origin: $url' -H 'Connection: keep-alive' -H 'Cookie: PHPSESSID=$3' -H 'Upgrade-Insecure-Requests: 1' -H 'Cache-Control: max-age=0' --data-raw 'flag='$2'&vm='$1''")
