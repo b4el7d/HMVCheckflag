@@ -1,5 +1,5 @@
 ![This is an image](https://hackmyvm.eu/img/logo.png)
-# ***HachMyVM CheckFlag***
+# ***HackMyVM CheckFlag***
 Experiment in bash for submit flags form bash in HackMyVM
 ## Usage
 ```
