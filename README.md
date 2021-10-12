@@ -1,4 +1,5 @@
-# ![This is an image](https://hackmyvm.eu/img/logo.png)***HMVCheckflag***![This is an image](https://hackmyvm.eu/img/logo.png)
+![This is an image](https://hackmyvm.eu/img/logo.png)
+# ***HachMyVM CheckFlag***
 Experiment in bash for submit flags form bash in HackMyVM
 ## Usage
 ```
