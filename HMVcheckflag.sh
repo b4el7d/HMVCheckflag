@@ -53,7 +53,7 @@ if [[ $returnReq == *"The flag submitted is wrong :("* ]] ;
 	echo "|________|___|__|_______|__|____|_______|___|   |_______|___|___|_______|"
 	echo "                                                                         "
 
-elif [[ $returnReq == *'Correct Flag Submitted! Congrats!.'* ]]; 
+elif [[ $returnReq == *'Correct Flag Submitted! Congrats!'* ]]; 
 	then
 	echo " _______  _____   ______  ______ _______ _______ _______ _______        _______  ______ "
 	echo " |       |     | |_____/ |_____/ |______ |          |    |______ |      |_____| |  ____ "
