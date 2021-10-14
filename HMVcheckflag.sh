@@ -1,10 +1,12 @@
 #!/bin/bash
 #################################################
 # experiment in bash for submit flag from bash in HackMyVM
-# creator : b4el7d avijneyam
+# creator : b4el7d
 # Twitter : @b4el7d @avijneyam @sml
 # Website : https://hackmyvm.eu
 ##################################################
+username="**********"
+password="**********"
 
 url="https://hackmyvm.eu"
 path1="/machines/checkflag.php"
@@ -12,11 +14,18 @@ urlFullCheck=$url""$path1
 userAgent="Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101 Firefox/78.0"
 accept="text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8"
 language="en-US,en;q=0.5"
+PHPSESSIONID="0pqlf17l7aua8k2gme3lkfbbfa"
 
-if [ $# -ne 3 ];
-  then
-    echo -e "exec:\nbash ./HMVcheckflag.sh Machinename Flag PHPSESSIONID"
-    exit
+
+if [[ $password == "**********" ]] || [[ $username == "**********" ]]
+then
+	echo -e "Insert USERNAME and PASSWORD"
+	exit
+fi	
+if [[ $# -ne 2 ]]
+then  	
+  	echo -e "Usage:\n\nbash ./HMVcheckflag.sh Machinename Flag "
+  	exit
 fi
 
 
@@ -41,13 +50,13 @@ echo "############################"
 echo "[*]CHECKING[*]"
 echo "Machine: $1"
 echo "Flag try: $2"
-echo "ID: $3"
+echo "ID: $PHPSESSIONID"
 echo "############################"
 
 
+login=$(bash -c "curl -s '$url/auth.php' -H 'User-Agent: $useragent' -H 'Accept: $accept' -H 'Accept-Language: $language' --compressed -H 'Content-Type: $accept' -H 'Origin: $url' -H 'Connection: keep-alive' -H 'Referer: $url/login/' -H 'Cookie: PHPSESSID=$PHPSESSIONID' -H 'Upgrade-Insecure-Requests: 1' --data-raw 'admin=$username&password_usuario=$pass' -X POST -L")
 
-
-returnReq=$(bash -c "curl -s '$urlFullCheck' -H 'User-Agent: $useragent' -H 'Accept: $accept' -H 'Accept-Language: $language' --compressed -H 'Referer: https://hackmyvm.eu/machines/machine.php?vm=$1' -H 'Content-Type: application/x-www-form-urlencoded' -H 'Origin: $url' -H 'Connection: keep-alive' -H 'Cookie: PHPSESSID=$3' -H 'Upgrade-Insecure-Requests: 1' -H 'Cache-Control: max-age=0' --data-raw 'flag='$2'&vm='$1''")
+returnReq=$(bash -c "curl -s '$urlFullCheck' -H 'User-Agent: $useragent' -H 'Accept: $accept' -H 'Accept-Language: $language' --compressed -H 'Referer: $url/machines/machine.php?vm=$1' -H 'Content-Type: application/x-www-form-urlencoded' -H 'Origin: $url' -H 'Connection: keep-alive' -H 'Cookie: PHPSESSID=$PHPSESSIONID' -H 'Upgrade-Insecure-Requests: 1' -H 'Cache-Control: max-age=0' --data-raw 'flag='$2'&vm='$1''")
 
 if [[ $returnReq == *"The flag submitted is wrong :("* ]]
 then
@@ -57,7 +66,7 @@ then
 	echo "|________|___|__|_______|__|____|_______|___|   |_______|___|___|_______|"
 	echo "                                                                         "
 
-elif [[ $returnReq == *"Correct Flag Submitted! Congrats!"* || $returnReq == *"Correct Flag Submitted! Congrats!."* ]]
+elif [[ $returnReq == *"Correct Flag Submitted! Congrats!"* ]] || [[$returnReq == *"Correct Flag Submitted! Congrats!."* ]]
 then
 	echo " _______  _____   ______  ______ _______ _______ _______ _______        _______  ______ "
 	echo " |       |     | |_____/ |_____/ |______ |          |    |______ |      |_____| |  ____ "
@@ -94,3 +103,5 @@ then
 else
   echo $returnReq
 fi
+
+
