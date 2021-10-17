@@ -8,15 +8,16 @@
 username="**********"
 password="**********"
 
+
 url="https://hackmyvm.eu"
 path1="/machines/checkflag.php"
+authurl=$url'/login/auth.php'
 urlFullCheck=$url""$path1
 userAgent="Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101 Firefox/78.0"
 accept="text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8"
 language="en-US,en;q=0.5"
 PHPSESSIONID="0pqlf17l7aua8k2gme3lkfbbff"
 check='<h2 class="profile-username font-weight-bold mb-0">'$username"</h2>"
-
 
 if [[ $password == "*************" ]] || [[ $username == "**********" ]]
 then
@@ -47,12 +48,16 @@ echo '|_/|___|| _> | |_ | <_/\|___||_/       '
 echo '<_>     |_|  |___|`____/     <_>       '
 
 
+
+
+
+
 login=$(bash -c "curl -s '$authurl' -H 'User-Agent: $useragent' -H 'Accept: $accept' -H 'Accept-Language: $language' --compressed -H 'Content-Type: application/x-www-form-urlencoded' -H 'Origin: $url' -H 'Connection: keep-alive' -H 'Referer: $url/login/' -H 'Cookie: PHPSESSID=$PHPSESSIONID' -H 'Upgrade-Insecure-Requests: 1' --data-raw 'admin=$username&password_usuario=$password' -X POST -L")
 
 if [[ $login == *"$check"* ]]
 	then
 		echo "****************************"
-		echo "Login: $username"
+		echo "Logged: $username"
 		echo "****************************"
 		echo "############################"
 		echo "[*]CHECKING[*]"
@@ -96,17 +101,21 @@ if [[ $login == *"$check"* ]]
 			echo "                                     ** *,  HackMyVM"
 		elif [[ $returnReq == *"You have submitted this flag in the past!"* ]]
 			then
-			echo " __      __   __     __            __  __              __		      	   "                    
-			echo "|   |   |  | |      |  | |   |<<  |   |  |  __| | |   |    >>  |  | | |  __| "
-			echo "|<< |   |><| | >>   |><| |   |>>| |<< |><| |<<| \</   |<< |  | |  | |\| |<<| "
-			echo "|   |<< |  | '__|   |  | |<< |  \ |__ |  | |__|  |    |    <<  '<<' | | |__| "
+			echo " _____ __    _____ _____    _____ __    _____ _____ _____ ____  __ __    _____ _____ _____ _____ ____  "
+			echo "|   __|  |  |  _  |   __|  |  _  |  |  | __  |   __|  _  |    \|  |  |  |   __|     |  |  |   | |    \ "
+			echo "|   __|  |__|     |  |  |  |     |  |__|    -|   __|     |  |  |_   _|  |   __|  |  |  |  | | | |  |  |"
+			echo "|__|  |_____|__|__|_____|  |__|__|_____|__|__|_____|__|__|____/  |_|    |__|  |_____|_____|_|___|____/ "
+                                                                                                       
 
 		elif [[ $returnReq == *"You have finished this VM!"* ]]
 			then
-			echo "You have finished this VM!"
+			echo " _____ _____ _____ _____ _____ _____|  |"
+			echo "|   __|     |   | |     |   __|  |  |  |"
+			echo "|   __|-   -| | | |-   -|__   |     |__|"
+			echo "|__|  |_____|_|___|_____|_____|__|__|__|"
 		else
 		  	echo $returnReq
 fi
 fi
-
+echo "############################"
 
